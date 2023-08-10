@@ -1,10 +1,10 @@
-#AIRV&V
+# AIRV&V
 
-##But : 
+## But : 
 Comprendre les enjeux et maitriser la blockchain avec un cadenas connecter.
 
-##Modalité : 
+## Modalité : 
 Présentation avec Mr Hennou / ? 
 
-##Sujet: 
+## Sujet: 
 Pouvoir déverrouiller un cadenas connecter grace a la blockchain. 
