@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.article-container,
+.article-container * {
+    margin: 0;
+}
+
+.home-title {
+  color: #FFF;
+  font-family: Roboto;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0; /* Enlève toute marge par défaut qui pourrait décaler le titre */
+}
+
+.home-title{
+  padding-left: 7%;
+  margin-top: 3%;
+}
+
+
+
+.home-container {
+  background-color: #181818;
+  min-height: 100vh; /* Assurez-vous que le fond couvre toute la hauteur de la fenêtre du navigateur */
+}
+
+.first-zone-container {
+  display: flex;           /* Utilisez Flexbox */
+  justify-content: space-between; /* Espace entre chaque composant Article */
+  flex-wrap: wrap;         /* Autorise les éléments à se replier s'ils dépassent la largeur du conteneur */
+  padding: 10rem;           /* Ajout de rembourrage autour du contenu */
+}
