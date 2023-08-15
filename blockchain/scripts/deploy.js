@@ -1,15 +1,17 @@
-async function main () {
-    // We get the contract to deploy
-    const Box = await ethers.getContractFactory('Box');
-    console.log('Deploying Box...');
-    const box = await Box.deploy();
-    await box.deployed();
-    console.log('Box deployed to:', box.address);
-  }
-  
-  main()
-    .then(() => process.exit(0))
-    .catch(error => {
-      console.error(error);
-      process.exit(1);
-    });
+const { ethers, upgrades } = require("hardhat");
+
+async function main() {
+  const AirVandV = await ethers.getContractFactory("AirVandV");
+
+  // Deploy the contract using the OpenZeppelin upgrades plugin to ensure it's upgradeable
+  const airVandV = await upgrades.deployProxy(AirVandV, [], { initializer: 'initialize' });
+
+  console.log("AirVandV deployed to:", airVandV.target);
+}
+
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
