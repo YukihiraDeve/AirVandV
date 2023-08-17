@@ -41,16 +41,12 @@ const Header = () => {
             <div className="logo"></div>
             <h1 className="title">AirV&V</h1>
         </div>
-        <div>Injected Provider {hasProvider ? 'DOES' : 'DOES NOT'} Exist</div>
-
-{ hasProvider &&                               /* Updated */
-  <button onClick={handleConnect}>Connect MetaMask</button>
-}
-
-{ wallet.accounts.length > 0 &&                /* New */
-  <div>Wallet Accounts: { wallet.accounts[0] }</div>
-}
-</div>
+        <button className="button" onClick={handleConnect}>
+                {wallet.accounts.length === 0 
+                    ? <span className="button-text">Connect Wallet</span> 
+                    : <span className="button-text">{wallet.accounts[0]}</span>}
+            </button>
+    </div>
 
     
     );

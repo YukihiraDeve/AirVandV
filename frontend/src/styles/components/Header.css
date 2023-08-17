@@ -44,17 +44,25 @@
     display: flex;
     align-items: center;
     justify-content: center; /* Pour centrer le texte */
-    width: 17rem;
     height: 5.625rem;
+    padding: 1rem 1.5rem;  /* ajouter un padding horizontal pour s'assurer qu'il y a de l'espace autour du texte */
     border-radius: 0.625rem;
     background: linear-gradient(229deg, #C305D0 0%, #5667F6 100%);
     cursor: pointer;
     transition: opacity 0.3s; /* Effet de survol */
+    font-size: 0.9rem;  /* taille de la police */
+    white-space: nowrap;  /* empêcher le texte de passer à la ligne */
+    overflow: hidden;  /* cacher le débordement du texte */
+    text-overflow: ellipsis;
+    min-width: 10.9375rem;  /* Largeur minimale pour le bouton */  
 }
 
+
+
 .button:hover {
-    opacity: 0.9;
+    opacity: 0.7;
 }
+
 
 .button-text {
     color: #FFF;

@@ -43,3 +43,10 @@ code {
   flex-wrap: wrap;         /* Autorise les éléments à se replier s'ils dépassent la largeur du conteneur */
   padding: 10rem;           /* Ajout de rembourrage autour du contenu */
 }
+
+.wallet-info {
+  color: #FFF;
+  font-family: Roboto;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
