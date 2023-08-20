@@ -1,61 +1,53 @@
-import React, { useState } from 'react';
+import React from "react";
 
-function NukiComponent() {
-  const [lockName, setLockName] = useState("");
-  const API_URL = "https://api.nuki.io/oauth/authorize/smartlock";
+const SMARTLOCK_ID = process.env.REACT_APP_SMARTLOCK_ID;
+const ENDPOINT = "https://api.nuki.io/smartlock/";
+const API_KEY = process.env.REACT_APP_API_KEY;
 
-  const API_TOKEN =  "ea7944a0856b43064190e9098d35255a07957d7928a06e6b246507b24d38617988c04083bfbec046"
-
-  const getLockName = async () => {
+function App() {
+  const handleOpen = async () => {
+    console.log("Opening the lock...");
     try {
-      const response = await fetch(`${API_URL}/lock-endpoint`, { 
+      const response = await fetch(`${ENDPOINT}${SMARTLOCK_ID}/action/unlock`, {
+        method: "POST",
         headers: {
-          'Authorization': `Bearer ${API_TOKEN}`
-        }
+          Authorization: `${API_KEY}`,
+        },
       });
+
       const data = await response.json();
-      setLockName(data.name); 
+      console.log(data);
     } catch (error) {
-      console.error("Erreur lors de la récupération du nom du cadenas:", error);
+      console.error("Error opening the lock:", error);
     }
   };
 
-  const unlock = async () => {
+  const handleClose = async () => {
+    console.log("Closing the lock...");
     try {
-      await fetch(`${API_URL}/unlock-endpoint`, {
-        method: 'POST',
+      const response = await fetch(`${ENDPOINT}${SMARTLOCK_ID}/action/lock`, {
+        method: "POST",
         headers: {
-          'Authorization': `Bearer ${API_TOKEN}`
-        }
+          Authorization: `${API_KEY}`,
+        },
       });
-    } catch (error) {
-      console.error("Erreur lors du déverrouillage:", error);
-    }
-  };
 
-  const lock = async () => {
-    try {
-      await fetch(`${API_URL}/lock-endpoint`, { 
-        headers: {
-          'Authorization': `Bearer ${API_TOKEN}`
-        }
-      });
+      const data = await response.json();
+      console.log(data);
     } catch (error) {
-      console.error("Erreur lors du verrouillage:", error);
+      console.error("Error closing the lock:", error);
     }
   };
 
   return (
-    <div>
-      <h1>Nuki Lock Control</h1>
-      <button onClick={getLockName}>Get Lock Name</button>
-      <p>Lock Name: {lockName}</p>
-      <button onClick={unlock}>Unlock</button>
-      <button onClick={lock}>Lock</button>
+    <div className="App">
+      <header className="App-header">
+        <h1>Nuki Smart Lock Controller</h1>
+        <button onClick={handleOpen}>Open</button>
+        <button onClick={handleClose}>Close</button>
+      </header>
     </div>
   );
 }
 
-
-
-export default NukiComponent;
+export default App;
