@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/components/Article.css';
+import './Article.css';
 
 
 interface ArticleProps {

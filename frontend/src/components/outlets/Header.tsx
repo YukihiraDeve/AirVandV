@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import detectEthereumProvider from '@metamask/detect-provider'
 
-import '../styles/components/Header.css';
+import './Header.css';
 
 let injectedProvider = false
 
@@ -39,7 +39,7 @@ const Header = () => {
         <div className="header">
         <div className="header-logo">
             <div className="logo"></div>
-            <h1 className="title">AirV&V</h1>
+            <h1 className="title">AirVandV</h1>
         </div>
         <button className="button" onClick={handleConnect}>
                 {wallet.accounts.length === 0 
