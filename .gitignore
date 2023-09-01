@@ -17,3 +17,6 @@ resources/.arch-internal-preview.css
 node_modules/
 
 .env
+blockchain/artifacts/
+blockchain/cache/
+blockchain/typechain-types/
