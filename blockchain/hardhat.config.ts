@@ -10,11 +10,15 @@ const config: HardhatUserConfig = {
   networks: {
     hardhat: {},
     sepolia: {
-      url: `https://eth-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_SEPOLIA_API_KEY}`,
+      url: `https://sepolia.infura.io/v3/b3738b08c0794ae38c1e084cd65bb9fa`,
       accounts: {
-        mnemonic: process.env.ETH_MNEMONIC,
+        mnemonic: "1b76076db17a49e89a32bab3c7043c99"
       },
-    },
+      chainId: 1337,
+      gas: "auto",
+      gasPrice: "auto",
+      gasMultiplier: 1,
+    }
   },
   solidity: "0.8.21",
 };

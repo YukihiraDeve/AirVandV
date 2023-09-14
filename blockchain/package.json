@@ -14,8 +14,8 @@
     "@nomicfoundation/hardhat-network-helpers": "^1.0.8",
     "@nomicfoundation/hardhat-toolbox": "^3.0.0",
     "@nomicfoundation/hardhat-verify": "^1.1.1",
-    "@openzeppelin/hardhat-upgrades": "^2.1.1",
     "@openzeppelin/contracts-upgradeable": "^4.9.3",
+    "@openzeppelin/hardhat-upgrades": "^2.1.1",
     "@typechain/ethers-v6": "^0.4.3",
     "@typechain/hardhat": "^8.0.3",
     "@types/chai": "^4.3.5",
@@ -23,7 +23,7 @@
     "@types/node": "^20.4.9",
     "chai": "^4.3.7",
     "ethers": "^6.7.0",
-    "hardhat": "^2.17.1",
+    "hardhat": "^2.17.3",
     "hardhat-gas-reporter": "^1.0.9",
     "mnemonics": "^1.1.3",
     "solidity-coverage": "^0.8.4",
@@ -33,6 +33,8 @@
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.9.3",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "package-lock.json": "^1.0.0",
+    "package.json": "^2.0.1"
   }
 }

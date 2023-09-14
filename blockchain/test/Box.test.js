@@ -2,23 +2,16 @@
 const { expect } = require('chai');
 
 // Start test block
-describe('Box', function () {
+describe('AirVandV', function () {
   before(async function () {
-    this.Box = await ethers.getContractFactory('Box');
+    this.AirVandV = await ethers.getContractFactory('AirVandV'); // <-- Changement ici
   });
 
   beforeEach(async function () {
-    this.box = await this.Box.deploy();
-    await this.box.deployed();
+    this.airVandV = await this.AirVandV.deploy(); // <-- Changement ici
+    await this.airVandV.deployed(); // <-- Changement ici
   });
 
-  // Test case
-  it('retrieve returns a value previously stored', async function () {
-    // Store a value
-    await this.box.store(42);
-
-    // Test if the returned value is the same one
-    // Note that we need to use strings to compare the 256 bit integers
-    expect((await this.box.retrieve()).toString()).to.equal('42');
-  });
+  // NOTE: Le contrat AirVandV n'a pas de méthodes "store" ou "retrieve" selon le code que vous avez fourni.
+  // Vous devez adapter vos tests pour tester les fonctionnalités réelles de votre contrat.
 });
