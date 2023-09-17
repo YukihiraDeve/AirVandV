@@ -1,4 +1,5 @@
 const { ethers, upgrades } = require("hardhat");
+const fs = require('fs');
 
 async function main() {
   const [deployer] = await ethers.getSigners();
@@ -14,6 +15,14 @@ async function main() {
   await proxyContract.deployed();
 
   console.log(`OpenZeppelin Proxy deployed to ${proxyContract.address}\n\n`);
+
+
+  // ABI
+  const path = '../../frontend/src/ABI.json';
+  const abi = JSON.stringify(Contract.interface.format("json"), null, 2);
+  fs.writeFileSync(path, abi);
+
+  console.log("ABI enregistrée dans", path);
 }
 
 main()
