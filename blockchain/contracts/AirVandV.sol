@@ -32,7 +32,11 @@ contract AirVandV is Initializable, ERC721EnumerableUpgradeable, OwnableUpgradea
         return _doorIds[tokenId];
     }
 
-
+    // Vérifie si l'adresse qui appelle la fonction est autorisé à déverrouiller une porte spécifique
+    function unlockDoor(string memory doorId) public view returns (bool) {
+        uint256 tokenId = getTokenIdForDoor(doorId);
+        return _isApprovedOrOwner(_msgSender(), tokenId);
+    }
 
     // Renvoie l'ID de token associé à un identifiant de porte spécifique
     function getTokenIdForDoor(string memory doorId) public view returns (uint256) {
