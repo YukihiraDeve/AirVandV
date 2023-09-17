@@ -1,6 +1,5 @@
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
-import "@nomicfoundation/hardhat-ethers";
 import "@openzeppelin/hardhat-upgrades";
 import dotenv from "dotenv";
 
@@ -10,11 +9,10 @@ const config: HardhatUserConfig = {
   networks: {
     hardhat: {},
     sepolia: {
-      url: `https://sepolia.infura.io/v3/82b9c544ce6242b6be59d38b4a122e73`,
+      url: `https://eth-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_SEPOLIA_API_KEY}`,
       accounts: {
-        mnemonic: "autumn cotton orbit deal will high south civil film police thought predict"
+        mnemonic: process.env.ETH_MNEMONIC,
       },
-      chainId: 11155111,
     }
   },
   solidity: "0.8.21",
