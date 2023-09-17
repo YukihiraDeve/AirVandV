@@ -7,10 +7,17 @@ async function main() {
   console.log("Deployer wallet public key:", deployer.address);
 
   const Contract = await ethers.getContractFactory("AirVandV");
-  const proxyContract = await upgrades.deployProxy(Contract);
-  await proxyContract.waitForDeployment();
+  console.log("test1")
 
+  //const proxyContract = await upgrades.deployProxy(Contract);
+  const token = await ethers.deployContract("AirVandV")
+  console.log("test2")
+  console.log("Token address:", await token.getAddress());
+
+  /*await proxyContract.waitForDeployment();
+  console.log("test3")
   console.log(`OpenZeppelin Proxy deployed to ${proxyContract.address}\n\n`);
+/*/
 }
 
 main()

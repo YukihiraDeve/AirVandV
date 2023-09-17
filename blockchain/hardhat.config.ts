@@ -10,14 +10,11 @@ const config: HardhatUserConfig = {
   networks: {
     hardhat: {},
     sepolia: {
-      url: `https://sepolia.infura.io/v3/b3738b08c0794ae38c1e084cd65bb9fa`,
+      url: `https://sepolia.infura.io/v3/82b9c544ce6242b6be59d38b4a122e73`,
       accounts: {
-        mnemonic: "1b76076db17a49e89a32bab3c7043c99"
+        mnemonic: "autumn cotton orbit deal will high south civil film police thought predict"
       },
-      chainId: 1337,
-      gas: "auto",
-      gasPrice: "auto",
-      gasMultiplier: 1,
+      chainId: 11155111,
     }
   },
   solidity: "0.8.21",
