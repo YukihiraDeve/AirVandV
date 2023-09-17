@@ -4,16 +4,16 @@ async function main() {
   const upgradeableProxyAddress = process.env.UPGRADEABLE_PROXY_ADDRESS;
   if (!upgradeableProxyAddress) {
     console.error(
-      "Missing address for OpenZeppelin upgradeable proxy in .env. Required, please set."
+      "Missing address for OpenZeppelin upgradeable proxy after initial deploy in .env."
     );
     return;
   }
 
   const [deployer] = await ethers.getSigners();
-  //   console.log(
-  //     "Deploy wallet balance:",
-  //     ethers.utils.formatEther(await deployer.getBalance())
-  //   );
+  console.log(
+    "Deploy wallet balance:",
+    ethers.utils.formatEther(await deployer.getBalance())
+  );
 
   console.log("Deployer wallet public key:", deployer.address);
 
