@@ -1,0 +1,102 @@
+/* Style global */
+* {
+    box-sizing: border-box;
+}
+
+/* Styles du header */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 1.5rem;
+    background: #121212;
+    width: 100%; /* 100% pour être fluide */
+    height: 10rem;
+    padding: 0 2rem; /* Pour garder un espace entre les bords et le contenu */
+}
+
+.header-logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 4.875rem;
+    height: 8.1875rem;
+    background: url("../../assets/logo.png") no-repeat center;
+    background-size: contain;
+    margin-right: 1rem; /* Espace entre le logo et le titre */
+}
+
+.title {
+    width: 17.375rem;
+    height: 3.125rem;
+    font-family: 'Kanit', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(360deg, #FFF 0%, #989898 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Pour centrer le texte */
+    height: 5.625rem;
+    padding: 1rem 1.5rem;  /* ajouter un padding horizontal pour s'assurer qu'il y a de l'espace autour du texte */
+    border-radius: 0.625rem;
+    background: linear-gradient(229deg, #C305D0 0%, #5667F6 100%);
+    cursor: pointer;
+    transition: opacity 0.3s; /* Effet de survol */
+    font-size: 0.9rem;  /* taille de la police */
+    white-space: nowrap;  /* empêcher le texte de passer à la ligne */
+    overflow: hidden;  /* cacher le débordement du texte */
+    text-overflow: ellipsis;
+    min-width: 10.9375rem;  /* Largeur minimale pour le bouton */  
+}
+
+
+
+.button:hover {
+    opacity: 0.7;
+}
+
+
+.button-text {
+    color: #FFF;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* Styles pour la responsivité */
+@media screen and (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+        padding: 1rem;
+    }
+
+    .logo {
+        width: 3.5rem;
+        height: 6rem;
+    }
+
+    .title {
+        width: auto;
+        font-size: 2rem;
+    }
+
+    .button {
+        width: 13rem;
+        height: 4.5rem;
+        margin-top: 1rem; /* Espace entre le titre et le bouton */
+    }
+
+    .button-text {
+        font-size: 1.2rem;
+    }
+}

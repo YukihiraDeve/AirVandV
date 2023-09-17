@@ -1,0 +1,53 @@
+.article-container {
+    width: 32.1875rem;
+    display: flex;
+    flex-direction: column;
+    align-items: start;  /* Aligne les éléments (titre et bouton) à gauche */
+    gap: 1rem;  /* Espacement entre les éléments */
+}
+
+.article-image {
+    width: 100%;  /* Utilise toute la largeur du conteneur */
+    height: 32.1875rem;
+    border-radius: 3.4375rem;
+    background: lightgray 50% / cover no-repeat;
+}
+
+.article-title {
+    color: #FFF;
+    font-family: Roboto;
+    font-size: 1.5rem;
+    font-weight: 500;
+    width: 29.9375rem;
+    height: 2.4375rem;
+}
+
+.article-button {
+    width: 10.9375rem;
+    height: 3.4375rem;
+    border-radius: 0.625rem;
+    background: linear-gradient(229deg, #C305D0 0%, #F6A356 100%);
+    border: none;
+    cursor: pointer;
+
+    /* Ajout des styles pour le texte du bouton */
+    color: #FFF;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 1.5rem;
+    font-weight: 500;
+    display: flex;       /* Ajout pour centrer le texte verticalement */
+    justify-content: center; /* Centrer le texte horizontalement */
+    align-items: center;  
+}
+
+/* Pour le responsive */
+@media (max-width: 768px) {  /* Exemple de breakpoint pour tablettes */
+    .article-container {
+        width: 100%;
+    }
+    .article-title,
+    .article-button {
+        width: 90%;
+    }
+}
