@@ -1,4 +1,5 @@
 const { ethers, upgrades } = require("hardhat");
+const fs = require("fs");
 
 async function main() {
   const upgradeableProxyAddress = process.env.UPGRADEABLE_PROXY_ADDRESS;
@@ -26,6 +27,19 @@ async function main() {
   console.log(
     `New contract deployed. OpenZeppelin Proxy remains at ${proxyContract.address}\n\n`
   );
+
+  // ABI
+  const data = {
+    AirVandV: {
+      address: deployer.address,
+      abi: JSON.parse(Contract.interface.format("json")),
+    },
+  };
+  const path = "./frontend/src/ABI.json";
+  const abi = JSON.stringify(data, null, 2);
+  fs.writeFileSync(path, abi);
+
+  console.log("ABI enregistrée dans", path);
 }
 
 main()

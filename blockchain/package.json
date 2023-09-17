@@ -21,9 +21,11 @@
     "@nomicfoundation/hardhat-toolbox": "^2.0.0",
     "@openzeppelin/contracts-upgradeable": "^4.6.0",
     "@openzeppelin/hardhat-upgrades": "^1.17.0",
+    "@alch/alchemy-web3": "^1.4.7",
     "@types/chai": "^4.3.3",
     "@types/mocha": "^10.0.1",
     "@types/node": "^18.7.16",
+    "@web3-react/injected-connector": "^6.0.7",
     "chai": "^4.3.4",
     "dotenv": "^16.0.0",
     "ethers": "^5.5.2",
@@ -33,6 +35,8 @@
     "prettier-plugin-solidity": "^1.0.0-beta.19",
     "solhint": "^3.3.6",
     "ts-node": "^10.9.1",
-    "typescript": "^5.0.3"
+    "typescript": "^5.0.3",
+    "viem": "^1.10.14",
+    "wagmi": "^1.4.2"
   }
 }
