@@ -1,4 +1,5 @@
 const { ethers, upgrades } = require("hardhat");
+const fs = require('fs');
 
 async function main() {
   const [deployer] = await ethers.getSigners();
@@ -13,6 +14,13 @@ async function main() {
   const token = await ethers.deployContract("AirVandV")
   console.log("test2")
   console.log("Token address:", await token.getAddress());
+
+
+  // Obtenez l'ABI et enregistrez-la dans un fichier
+  const abi = JSON.stringify(token.interface.format('json'), null, 2);
+  fs.writeFileSync('VotreContratABI.json', abi);
+  
+  console.log('ABI enregistrée dans VotreContratABI.json');
 
   /*await proxyContract.waitForDeployment();
   console.log("test3")
