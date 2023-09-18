@@ -1,4 +1,4 @@
-import { ethers } from 'ethers';
+import { ethers } from 'ethers';/*
 
 // Remplacez par l'ABI de votre contrat ERC-721
 const contractABI: ethers.ContractInterface = [...] 
@@ -16,7 +16,7 @@ const contract = new ethers.Contract(contractAddress, contractABI, provider);
  * @param userAddress - L'adresse Ethereum de l'utilisateur
  * @param tokenId - L'ID du token à vérifier
  * @returns Un booléen indiquant si l'utilisateur possède le NFT
- */
+ 
 async function checkIfUserOwnsToken(userAddress: string, tokenId: number): Promise<boolean> {
     try {
         const owner = await contract.ownerOf(tokenId);
@@ -28,3 +28,4 @@ async function checkIfUserOwnsToken(userAddress: string, tokenId: number): Promi
 }
 
 export { checkIfUserOwnsToken };
+*/

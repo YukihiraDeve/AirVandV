@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { checkIfUserOwnsToken } from '../BlockchainOutils';
+//import { checkIfUserOwnsToken } from '../BlockchainOutils';
 import './Article.css';
 
 interface ArticleProps {
@@ -9,9 +9,9 @@ interface ArticleProps {
     tokenId: number;      // Assurez-vous de transmettre cet attribut également
 }
 
-const Article: React.FC<ArticleProps> = ({ imagePath, title, userAddress, tokenId }) => {
+const Article: React.FC<ArticleProps> = ({ imagePath, title }) => {
     const [userOwnsToken, setUserOwnsToken] = useState<boolean | null>(null);
-
+/*
     useEffect(() => {
         (async () => {
             const owns = await checkIfUserOwnsToken(userAddress, tokenId);
@@ -24,12 +24,12 @@ const Article: React.FC<ArticleProps> = ({ imagePath, title, userAddress, tokenI
     if (userOwnsToken === null) return <div className="article-container-loading">Loading...</div>;
 
     const buttonText = userOwnsToken ? "Ouvrir la porte" : "Réserver";
-
+*/
     return (
         <div className="article-container">
             <div className="article-image" style={{ backgroundImage: `url(${imagePath})` }}></div>
             <h2 className="article-title">{title}</h2>
-            <button className="article-button">{buttonText}</button>
+        {/* <button className="article-button">{buttonText}</button> */}
         </div>
     );
 };

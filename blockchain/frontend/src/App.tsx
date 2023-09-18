@@ -3,29 +3,30 @@ import logo from './logo.svg';
 import './App.css';
 import Contract from './ABI.json';
 import ethers from 'ethers';
-// import { useAccount } from 'wagmi';
+import { useAccount } from 'wagmi';
 // import { Web3ReactProvider } from '@alch/alchemy-web3';
 
-// import { InjectedConnector } from "@web3-react/injected-connector";
-// import { create } from 'domain';
+import { InjectedConnector } from "@web3-react/injected-connector";
+import { create } from 'domain';
 
 function App() {
-  // const alchemyKey = process.env.ALCHEMY_WEBSOCKET;
-  // const web3 = createAlchemyWeb3(alchemyKey);
-  // const contractAddress = process.env.UPGRADEABLE_PROXY_ADDRESS;
+  /*
+   const alchemyKey = process.env.ALCHEMY_WEBSOCKET;
+   const web3 = createAlchemyWeb3(alchemyKey);
+   const contractAddress = process.env.UPGRADEABLE_PROXY_ADDRESS;
 
-  // const { address } = useAccount();
+   const { address } = useAccount();
 
-  // let provider:any;
-  // if(address) {
-  //   provider = new ethers.providers.Web3Provider(window.ethereum).getSigner();
-  // }
+   let provider:any;
+   if(address) {
+     provider = new ethers.providers.Web3Provider(window.ethereum).getSigner();
+   }
 
-  // const contract = new web3.eth.Contract(
-  //   Contract.AirVandV.address,
-  //   Contract.AirVandV.abi
-  // );
-
+   const contract = new web3.eth.Contract(
+     Contract.AirVandV.address,
+     Contract.AirVandV.abi
+   );
+*/
   return (
     <div className="App">
       <header className="App-header">
