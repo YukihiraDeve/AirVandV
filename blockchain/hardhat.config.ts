@@ -1,11 +1,14 @@
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
 import "@openzeppelin/hardhat-upgrades";
+import "@nomiclabs/hardhat-ethers";
+import "@nomiclabs/hardhat-etherscan";
 import dotenv from "dotenv";
 
 dotenv.config();
 
 const config: HardhatUserConfig = {
+  solidity: "0.8.21",
   networks: {
     hardhat: {},
     sepolia: {
@@ -15,7 +18,9 @@ const config: HardhatUserConfig = {
       },
     }
   },
-  solidity: "0.8.21",
+  etherscan: {
+    apiKey: process.env.ETHERSCAN_API_KEY,
+  },
 };
 
 export default config;

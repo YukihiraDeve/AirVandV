@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "verify:sepolia": "npx hardhat verify --network sepolia 0x0a615EF24d5c82858758A7A4629dDb62B85df64E",
     "test": "hardhat watch test --network hardhat",
     "test:ci": "hardhat test --network hardhat test/*.ts",
     "test:gas": "REPORT_GAS=1 hardhat test --network hardhat test/*.ts",
@@ -18,10 +19,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@alch/alchemy-web3": "^1.4.7",
     "@nomicfoundation/hardhat-toolbox": "^2.0.0",
+    "@nomiclabs/hardhat-etherscan": "^3.1.7",
     "@openzeppelin/contracts-upgradeable": "^4.6.0",
     "@openzeppelin/hardhat-upgrades": "^1.17.0",
-    "@alch/alchemy-web3": "^1.4.7",
     "@types/chai": "^4.3.3",
     "@types/mocha": "^10.0.1",
     "@types/node": "^18.7.16",
