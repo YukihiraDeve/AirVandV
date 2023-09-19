@@ -1,7 +1,7 @@
 import React from "react";
-import Article from "../modals/Article";
-import "../../index.css";
-import NukiComponent from "../modals/NukiComponent";
+// import Article from "../modals/Article";
+import "../styles/index.css";
+import NukiComponent from "../components/modals/NukiComponent";
 
 import img1 from "../../assets/img1.jpeg";
 import img2 from "../../assets/img2.jpeg";
@@ -13,18 +13,18 @@ const Home = () => {
     <div className="home-container">
       <h1 className="home-title">Explorez le monde</h1>
       <div className="first-zone-container">
-        <Article
+        {/* <Article 
           imagePath={img1}
           title="Chungmulo, Seoul"
           buttonText="Réserver"
-        />
-        <Article
+        /* /> */}
+        {/* <Article 
           imagePath={img2}
           title="Gangnam, Seoul"
           buttonText="Réserver"
         />
-        <Article imagePath={img3} title="DDP, Seoul" buttonText="Réserver" />
-      </div>
+       */ }
+       </div>
       <NukiComponent />
     </div>
   );

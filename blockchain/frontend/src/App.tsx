@@ -9,6 +9,12 @@ import { useAccount } from 'wagmi';
 import { InjectedConnector } from "@web3-react/injected-connector";
 import { create } from 'domain';
 
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './pages/Home';
+import HelloWorld from './components/Helloworld';
+import Test from './components/Test'
+
+
 function App() {
   /*
    const alchemyKey = process.env.ALCHEMY_WEBSOCKET;
@@ -28,22 +34,13 @@ function App() {
    );
 */
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='HelloWorld' element={<HelloWorld/>}/>
+        <Route path='Unlock' element={<Test/>}/>
+      </Routes>
+    </Router>
   );
 }
 

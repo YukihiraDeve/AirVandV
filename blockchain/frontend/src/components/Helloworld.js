@@ -6,14 +6,18 @@ import {
   updateMessage,
   loadCurrentMessage,
   getCurrentWalletConnected,
-} from "./util/interact.js";
+} from "./interact.js";
 
-import alchemylogo from "./alchemylogo.svg";
+import alchemylogo from "../assets/logo.svg";
+
+
+function HelloWorld(){
 
 const [walletAddress, setWallet] = useState("");
 const [status, setStatus] = useState("");
 const [message, setMessage] = useState("No connection to the network.");
 const [newMessage, setNewMessage] = useState("");
+
 
 useEffect(() => {
     async function fetchMessage() {
@@ -73,3 +77,5 @@ return (
       </div>
     </div>
   );
+}
+  export default HelloWorld;

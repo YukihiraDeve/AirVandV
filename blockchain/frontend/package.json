@@ -16,11 +16,7 @@
     "@types/node": "^20.4.9",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.20",
-<<<<<<< HEAD
     "alchemy-sdk": "2.10.0",
-=======
-    "alchemy-sdk": "^2.10.0",
->>>>>>> d0cf60baa621599b29d932ee6637d52675affcdb
     "axios": "^1.4.0",
     "browserify-zlib": "^0.2.0",
     "crypto-browserify": "^3.12.0",
@@ -40,7 +36,8 @@
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
     "typescript": "^5.1.6",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "web3": "^4.1.2"
   },
   "scripts": {
     "start": "react-scripts start"
