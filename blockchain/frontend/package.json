@@ -9,14 +9,18 @@
     "@heroicons/react": "^2.0.18",
     "@metamask/detect-provider": "^2.0.0",
     "@metamask/sdk": "^0.5.6",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
+    "@testing-library/jest-dom": "6.1.0",
+    "@testing-library/react": "14.0.0",
+    "@testing-library/user-event": "14.4.3",
     "@types/jest": "^27.5.2",
     "@types/node": "^20.4.9",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.20",
+<<<<<<< HEAD
     "alchemy-sdk": "2.10.0",
+=======
+    "alchemy-sdk": "^2.10.0",
+>>>>>>> d0cf60baa621599b29d932ee6637d52675affcdb
     "axios": "^1.4.0",
     "browserify-zlib": "^0.2.0",
     "crypto-browserify": "^3.12.0",
