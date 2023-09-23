@@ -20,7 +20,7 @@ contract AirVandV is Initializable, ERC721EnumerableUpgradeable, OwnableUpgradea
     }
 
     // Crée un nouveau token et l'attribue à l'adresse du destinataire (seule le propriétaire du contrat peut appeler cette fonction)
-    function mint(address to, string memory doorId) public onlyOwner {
+    function mint(address to, string memory doorId) public {
         _tokenIdCounter.increment();
         uint256 newTokenId = _tokenIdCounter.current();
         _safeMint(to, newTokenId);
@@ -46,5 +46,15 @@ contract AirVandV is Initializable, ERC721EnumerableUpgradeable, OwnableUpgradea
             }
         }
         revert("Door ID does not exist");
+    }
+
+    // Renvoie un tableau contenant tous les identifiants de porte associés à une adresse spécifique
+    function getDoorIdsForOwner(address owner) public view returns (string[] memory) {
+        uint256 tokenCount = balanceOf(owner);
+        string[] memory doorIds = new string[](tokenCount);
+        for (uint256 i = 0; i < tokenCount; i++) {
+            doorIds[i] = _doorIds[tokenOfOwnerByIndex(owner, i)];
+        }
+        return doorIds;
     }
 }

@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* h-full bod and html for error page*/
+html,
+body {
+  height: 100%;
+}

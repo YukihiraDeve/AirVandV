@@ -35,11 +35,11 @@ async function main() {
       abi: JSON.parse(Contract.interface.format("json")),
     },
   };
-  const path = "./frontend/src/ABI.json";
-  const abi = JSON.stringify(data, null, 2);
-  fs.writeFileSync(path, abi);
+  // const path = "./frontend/src/ABI.json";
+  // const abi = JSON.stringify(data, null, 2);
+  // fs.writeFileSync(path, abi);
 
-  console.log("ABI enregistrée dans", path);
+  // console.log("ABI enregistrée dans", path);
 }
 
 main()
