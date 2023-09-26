@@ -1,32 +1,33 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 
 const Metamask = () => {
-    const [account, setAccount] = useState(null)
-    const connectWallet = async() => {
-
-    
+  const [account, setAccount] = useState(null);
+  const connectWallet = async () => {
     try {
-        if(window.ethereum){
-            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-            setAccount(accounts[0]);
-            localStorage.setItem('userAdress', accounts)
-        } else {
-            alert("Metamask n'est pas installé")
-        }
-    } catch(e){
-        console.error(e)
+      if (window.ethereum) {
+        const accounts = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        setAccount(accounts[0]);
+        localStorage.setItem("userAddress", accounts);
+      } else {
+        alert("Metamask n'est pas installé");
+      }
+    } catch (e) {
+      console.error(e);
     }
-}
-    return (
-        <div>
-        <h1>Bonjour !</h1>
-        {account ? (
-          <p>Connecté avec : {account}</p>
-        ) : (
-          <button onClick={connectWallet}>Se connecter avec MetaMask</button>
-        )}
-      </div>
-    );
+  };
+  return (
+    <div>
+      {account ? (
+        <p>Wallet connected : {account}</p>
+      ) : (
+        <button className="btn" onClick={connectWallet}>
+          Connect wallet
+        </button>
+      )}
+    </div>
+  );
 };
 
 export default Metamask;
