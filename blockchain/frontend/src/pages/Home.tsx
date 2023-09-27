@@ -1,7 +1,8 @@
 import React, { useState, useCallback } from "react";
-import { mintToken, UnlockToken } from "../components/utils/blockchain";
+import { mintToken, UnlockToken } from "../components/utils/Blockchain";
+import { handleClose, handleOpen, handleStatus } from "../components/utils/Nuki";
 
-const Home = () => {
+const Home: React.FC = () => {
   const [isDoorOpen, setIsDoorOpen] = useState(false); // Ajout d'un état pour suivre l'état de la porte
 
   const handleMint = useCallback(async () => {
