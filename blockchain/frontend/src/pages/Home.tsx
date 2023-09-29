@@ -1,16 +1,32 @@
 import React, { useState, useCallback } from "react";
 import { mintToken, UnlockToken } from "../components/utils/Blockchain";
-import { handleClose, handleOpen, handleStatus } from "../components/utils/Nuki";
+import {
+  handleClose,
+  handleOpen,
+  handleStatus,
+} from "../components/utils/Nuki";
 
 const Home: React.FC = () => {
-  const [isDoorOpen, setIsDoorOpen] = useState(false); // Ajout d'un état pour suivre l'état de la porte
+  const [isDoorOpen, setIsDoorOpen] = useState(false);
+  const [doorId, setDoorId] = useState<string>("");
 
   const handleMint = useCallback(async () => {
-    await mintToken();
-  }, []);
+    if (doorId === "" || doorId === undefined) {
+      alert("Please enter a Door ID");
+      return;
+    }
+
+    const isMinted: boolean = await mintToken(doorId);
+    if(!isMinted) {
+      alert("Error while minting token");
+      return;
+    } else {
+      alert("Token minted successfully !");
+    }
+  }, [doorId]);
 
   const handleUnlock = useCallback(async () => {
-    var result:boolean = await UnlockToken();
+    var result: boolean = await UnlockToken();
     console.log(result);
     if (result) {
       setIsDoorOpen(!isDoorOpen);
@@ -67,6 +83,8 @@ const Home: React.FC = () => {
                   <input
                     className="input input-bordered join-item"
                     placeholder="Door ID"
+                    value={doorId}
+                    onChange={(e) => setDoorId(e.target.value)}
                   />
                   <button className="btn join-item rounded-r-full" onClick={handleMint}>Add</button>
                 </div>

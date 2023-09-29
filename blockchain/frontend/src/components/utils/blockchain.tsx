@@ -6,19 +6,29 @@ const provider = new ethers.providers.Web3Provider(window.ethereum);
 const signer = provider.getSigner();
 const contract = new ethers.Contract(contractAddress, abi, signer);
 
-const mintToken = async (): Promise<void> => {
-  var account = localStorage.getItem("userAddress");
+const mintToken = async (doorId: string): Promise<boolean> => {
+  const account: string | null = localStorage.getItem("userAddress");
+  
+  if (!account) {
+    throw new Error("User's wallet is not connected");
+  }
+
   try {
     console.log(account);
-    if (!account) throw new Error("User's wallet is not connected");
 
-    const doorId = "test123";
     const transaction = await contract.mint(account, doorId);
     console.log("Transaction : ", transaction.hash);
+
+    await transaction.wait();
+    return true;
+    
   } catch (error) {
     console.error("Error", error);
+    return false;
   }
 };
+
+
 
 
 const UnlockToken = async (): Promise<boolean> => {
