@@ -1,23 +1,42 @@
-import React, { useState, useCallback } from "react";
-import { mintToken, UnlockToken } from "../components/utils/Blockchain";
+import React, { useState, useCallback, useEffect } from "react";
+import { mintToken, UnlockToken } from "../components/utils/blockchain";
 import { handleClose, handleOpen, handleStatus } from "../components/utils/Nuki";
 
 const Home: React.FC = () => {
-  const [isDoorOpen, setIsDoorOpen] = useState(false); // Ajout d'un état pour suivre l'état de la porte
+  const [isDoorOpen, setIsDoorOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const updateDoorStatus = useCallback(async () => {
+    const status = await handleStatus();
+    setIsDoorOpen(status === 3);
+    setIsLoading(status === 2 || status === 4); // Supposant que 2 et 4 sont les états de déverrouillage/verrouillage
+  }, []);
+
+  useEffect(() => {
+    updateDoorStatus();
+  }, [updateDoorStatus]);
 
   const handleMint = useCallback(async () => {
     await mintToken();
   }, []);
 
   const handleUnlock = useCallback(async () => {
-    var result:boolean = await UnlockToken();
-    console.log(result);
+    const result: boolean = await UnlockToken();
     if (result) {
-      setIsDoorOpen(!isDoorOpen);
+      setIsLoading(true);
+      await (isDoorOpen ? handleClose() : handleOpen());
+
+      const intervalId = setInterval(async () => {
+        const status = await handleStatus();
+        if (status !== 2 && status !== 4) { // Si la serrure n'est plus en déverrouillage/verrouillage
+          clearInterval(intervalId);
+          updateDoorStatus();
+        }
+      }, 1000); // Vérifie le statut toutes les secondes
     } else {
       alert("You don't have the right to open this door");
     }
-  }, [isDoorOpen]);
+  }, [isDoorOpen, updateDoorStatus]);
 
   return (
     <div data-theme="light">
@@ -42,16 +61,19 @@ const Home: React.FC = () => {
                 </h3>
               </div>
               <div className="flex items-center gap-x-4 text-xs">
-                <button
-                  className={`relative z-10 rounded-full px-3 py-1.5 font-medium ${
-                    isDoorOpen
-                      ? "bg-red-500 text-white"
-                      : "bg-green-500 text-white"
-                  }`}
-                  onClick={handleUnlock}
-                >
-                  {isDoorOpen ? "Close" : "Open"}
-                </button>
+              <button
+        className={`relative z-10 rounded-full px-3 py-1.5 font-medium ${
+          isLoading
+            ? "bg-yellow-500 text-white"
+            : isDoorOpen
+            ? "bg-red-500 text-white"
+            : "bg-green-500 text-white"
+        }`}
+        onClick={handleUnlock}
+        disabled={isLoading}
+      >
+        {isLoading ? "Loading..." : isDoorOpen ? "Close" : "Open"}
+      </button>
               </div>
             </article>
             {/* Ajouter un nouveau cadenas */}
