@@ -1,6 +1,10 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { mintToken, UnlockToken } from "../components/utils/Blockchain";
-import { handleClose, handleOpen, handleStatus } from "../components/utils/Nuki";
+import {
+  handleClose,
+  handleOpen,
+  handleStatus,
+} from "../components/utils/Nuki";
 
 const Home: React.FC = () => {
   const [isDoorOpen, setIsDoorOpen] = useState(false);
@@ -25,7 +29,7 @@ const Home: React.FC = () => {
     }
 
     const isMinted: boolean = await mintToken(doorId);
-    if(!isMinted) {
+    if (!isMinted) {
       alert("Error while minting token");
       return;
     } else {
@@ -39,7 +43,7 @@ const Home: React.FC = () => {
     if (result) {
       setIsLoading(true);
       await (isDoorOpen ? handleClose() : handleOpen());
-  
+
       const intervalId = setInterval(async () => {
         const status = await handleStatus();
         if (status !== 2 && status !== 4) {
@@ -62,8 +66,7 @@ const Home: React.FC = () => {
               AirVandV solution
             </h2>
             <p className="mt-2 text-lg leading-8 text-gray-600">
-              We created a solution to secure your home using blockchain
-              technology !
+              The key of your problem is here.
             </p>
           </div>
           <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
@@ -76,19 +79,19 @@ const Home: React.FC = () => {
                 </h3>
               </div>
               <div className="flex items-center gap-x-4 text-xs">
-              <button
-  className={`relative z-10 rounded-full px-3 py-1.5 font-medium ${
-    isLoading
-      ? "bg-yellow-500 text-white"
-      : isDoorOpen
-      ? "bg-red-500 text-white"
-      : "bg-green-500 text-white"
-  }`}
-  onClick={handleUnlock}
-  disabled={isLoading || disableButton}
->
-  {isLoading ? "Loading..." : isDoorOpen ? "Close" : "Open"}
-</button>
+                <button
+                  className={`btn ${
+                    isLoading
+                      ? "btn-warning"
+                      : isDoorOpen
+                      ? "btn-error"
+                      : "btn-success"
+                  }`}
+                  onClick={handleUnlock}
+                  disabled={isLoading || disableButton}
+                >
+                  {isLoading ? "Loading..." : isDoorOpen ? "Close" : "Open"}
+                </button>
               </div>
             </article>
             {/* Ajouter un nouveau cadenas */}
@@ -107,7 +110,12 @@ const Home: React.FC = () => {
                     value={doorId}
                     onChange={(e) => setDoorId(e.target.value)}
                   />
-                  <button className="btn join-item rounded-r-full" onClick={handleMint}>Add</button>
+                  <button
+                    className="btn join-item rounded-r-full"
+                    onClick={handleMint}
+                  >
+                    Add
+                  </button>
                 </div>
               </div>
             </article>

@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 
-const Metamask = () => {
-  const [account, setAccount] = useState(null);
+const Metamask: React.FC = () => {
+  const [account, setAccount] = useState<string | null>(null);
+
   const connectWallet = async () => {
     try {
       if (window.ethereum) {
-        const accounts = await window.ethereum.request({
+        const accounts: string[] = await window.ethereum.request({
           method: "eth_requestAccounts",
         });
         setAccount(accounts[0]);
-        localStorage.setItem("userAddress", accounts);
+        localStorage.setItem("userAddress", accounts[0]);
       } else {
         alert("Metamask n'est pas installé");
       }
@@ -17,6 +18,7 @@ const Metamask = () => {
       console.error(e);
     }
   };
+
   return (
     <div>
       {account ? (
