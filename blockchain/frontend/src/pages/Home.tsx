@@ -5,6 +5,7 @@ import { handleClose, handleOpen, handleStatus } from "../components/utils/Nuki"
 const Home: React.FC = () => {
   const [isDoorOpen, setIsDoorOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [disableButton, setDisableButton] = useState(false);
 
   const updateDoorStatus = useCallback(async () => {
     const status = await handleStatus();
@@ -21,21 +22,23 @@ const Home: React.FC = () => {
   }, []);
 
   const handleUnlock = useCallback(async () => {
+    setDisableButton(true);
     const result: boolean = await UnlockToken();
     if (result) {
       setIsLoading(true);
       await (isDoorOpen ? handleClose() : handleOpen());
-
+  
       const intervalId = setInterval(async () => {
         const status = await handleStatus();
-        if (status !== 2 && status !== 4) { // Si la serrure n'est plus en déverrouillage/verrouillage
+        if (status !== 2 && status !== 4) {
           clearInterval(intervalId);
           updateDoorStatus();
         }
-      }, 1000); // Vérifie le statut toutes les secondes
+      }, 5000);
     } else {
       alert("You don't have the right to open this door");
     }
+    setTimeout(() => setDisableButton(false), 5000); // Réactive le bouton après 5 secondes
   }, [isDoorOpen, updateDoorStatus]);
 
   return (
@@ -62,18 +65,18 @@ const Home: React.FC = () => {
               </div>
               <div className="flex items-center gap-x-4 text-xs">
               <button
-        className={`relative z-10 rounded-full px-3 py-1.5 font-medium ${
-          isLoading
-            ? "bg-yellow-500 text-white"
-            : isDoorOpen
-            ? "bg-red-500 text-white"
-            : "bg-green-500 text-white"
-        }`}
-        onClick={handleUnlock}
-        disabled={isLoading}
-      >
-        {isLoading ? "Loading..." : isDoorOpen ? "Close" : "Open"}
-      </button>
+  className={`relative z-10 rounded-full px-3 py-1.5 font-medium ${
+    isLoading
+      ? "bg-yellow-500 text-white"
+      : isDoorOpen
+      ? "bg-red-500 text-white"
+      : "bg-green-500 text-white"
+  }`}
+  onClick={handleUnlock}
+  disabled={isLoading || disableButton}
+>
+  {isLoading ? "Loading..." : isDoorOpen ? "Close" : "Open"}
+</button>
               </div>
             </article>
             {/* Ajouter un nouveau cadenas */}
