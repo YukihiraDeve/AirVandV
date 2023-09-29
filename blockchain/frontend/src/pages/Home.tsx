@@ -1,14 +1,22 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { mintToken, UnlockToken } from "../components/utils/Blockchain";
-import {
-  handleClose,
-  handleOpen,
-  handleStatus,
-} from "../components/utils/Nuki";
+import { handleClose, handleOpen, handleStatus } from "../components/utils/Nuki";
 
 const Home: React.FC = () => {
   const [isDoorOpen, setIsDoorOpen] = useState(false);
   const [doorId, setDoorId] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [disableButton, setDisableButton] = useState(false);
+
+  const updateDoorStatus = useCallback(async () => {
+    const status = await handleStatus();
+    setIsDoorOpen(status === 3);
+    setIsLoading(status === 2 || status === 4); // Supposant que 2 et 4 sont les états de déverrouillage/verrouillage
+  }, []);
+
+  useEffect(() => {
+    updateDoorStatus();
+  }, [updateDoorStatus]);
 
   const handleMint = useCallback(async () => {
     if (doorId === "" || doorId === undefined) {
@@ -26,14 +34,24 @@ const Home: React.FC = () => {
   }, [doorId]);
 
   const handleUnlock = useCallback(async () => {
-    var result: boolean = await UnlockToken();
-    console.log(result);
+    setDisableButton(true);
+    const result: boolean = await UnlockToken();
     if (result) {
-      setIsDoorOpen(!isDoorOpen);
+      setIsLoading(true);
+      await (isDoorOpen ? handleClose() : handleOpen());
+  
+      const intervalId = setInterval(async () => {
+        const status = await handleStatus();
+        if (status !== 2 && status !== 4) {
+          clearInterval(intervalId);
+          updateDoorStatus();
+        }
+      }, 5000);
     } else {
       alert("You don't have the right to open this door");
     }
-  }, [isDoorOpen]);
+    setTimeout(() => setDisableButton(false), 5000); // Réactive le bouton après 5 secondes
+  }, [isDoorOpen, updateDoorStatus]);
 
   return (
     <div data-theme="light">
@@ -58,16 +76,19 @@ const Home: React.FC = () => {
                 </h3>
               </div>
               <div className="flex items-center gap-x-4 text-xs">
-                <button
-                  className={`relative z-10 rounded-full px-3 py-1.5 font-medium ${
-                    isDoorOpen
-                      ? "bg-red-500 text-white"
-                      : "bg-green-500 text-white"
-                  }`}
-                  onClick={handleUnlock}
-                >
-                  {isDoorOpen ? "Close" : "Open"}
-                </button>
+              <button
+  className={`relative z-10 rounded-full px-3 py-1.5 font-medium ${
+    isLoading
+      ? "bg-yellow-500 text-white"
+      : isDoorOpen
+      ? "bg-red-500 text-white"
+      : "bg-green-500 text-white"
+  }`}
+  onClick={handleUnlock}
+  disabled={isLoading || disableButton}
+>
+  {isLoading ? "Loading..." : isDoorOpen ? "Close" : "Open"}
+</button>
               </div>
             </article>
             {/* Ajouter un nouveau cadenas */}
