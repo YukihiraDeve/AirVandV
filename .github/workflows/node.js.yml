@@ -21,6 +21,14 @@ jobs:
 
     steps:
       - name: Install Dependencies
-        run: |
+      - uses: actions/setup-node@v3
+        with: 
+          node-version: '20.x'
+          
+      - run: |
+          shell: bash
+          working-directory: blockchain/
           npm install
-        working-directory: blockchain/
+
+
+        
