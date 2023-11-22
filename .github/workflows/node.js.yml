@@ -23,4 +23,4 @@ jobs:
       - name: Install Dependencies
         run: |
           npm install
-        working-directory: ./blockchain
+        working-directory: blockchain
