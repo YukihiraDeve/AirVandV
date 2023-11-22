@@ -12,12 +12,8 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x] # Vous pouvez ajuster ces versions selon vos besoins
-
+        node-version: [14.x, 16.x, 18.x] 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
@@ -26,6 +22,6 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
-        working-directory: ./blockchain/frontend
+        working-directory: blockchain/frontend
 
       # Vous pouvez ajouter d'autres étapes ici, comme la construction, les tests, etc.
