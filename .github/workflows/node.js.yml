@@ -20,14 +20,17 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-      - name: Install Dependencies
-      - uses: actions/setup-node@v3
-        with: 
-          node-version: '20.x'
-          
-      - run: |
-          working-directory: blockchain/
-          npm install
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm install
+        working-directory: ./blockchain/frontend
 
         
