@@ -1,6 +1,3 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
 name: Node.js CI
 
 on:
@@ -11,26 +8,24 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        node-version: [14.x, 16.x, 18.x] # Vous pouvez ajuster ces versions selon vos besoins
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
 
       - name: Install Dependencies
         run: npm install
-        working-directory: ./blockchain/frontend
+        working-directory: blockchain/
 
-        
+      # Vous pouvez ajouter d'autres étapes ici, comme la construction, les tests, etc.
