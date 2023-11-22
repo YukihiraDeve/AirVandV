@@ -21,7 +21,8 @@ jobs:
           cache: 'npm'
 
       - name: Install Dependencies
-        run: npm install
-        working-directory: blockchain/frontend
+        run: |
+          cd blockchain
+          npm install
 
       # Vous pouvez ajouter d'autres étapes ici, comme la construction, les tests, etc.
