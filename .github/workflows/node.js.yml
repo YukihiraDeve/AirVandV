@@ -26,7 +26,6 @@ jobs:
           node-version: '20.x'
           
       - run: |
-          shell: bash
           working-directory: blockchain/
           npm install
 
