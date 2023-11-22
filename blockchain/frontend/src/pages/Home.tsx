@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { mintToken, UnlockToken } from "../components/utils/Blockchain";
+import { mintToken, UnlockToken } from "../components/utils/blockchain";
 import {
   handleClose,
   handleOpen,
