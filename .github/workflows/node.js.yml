@@ -26,6 +26,6 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
-        working-directory: blockchain/
+        working-directory: ./blockchain/frontend
 
       # Vous pouvez ajouter d'autres étapes ici, comme la construction, les tests, etc.
