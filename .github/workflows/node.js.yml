@@ -22,5 +22,5 @@ jobs:
     steps:
       - name: Install Dependencies
         run: |
-          cd blockchain/frontend
+          cd blockchain
           npm install
